@@ -4,10 +4,9 @@ A JavaScript library for converting cooking measures.
 
 ## Getting Started
 
-### Usage
+## Usage
 
-Supported Units
----------------
+##Supported Units
 
 * milliliter = ml
 * teaspoon = tsp

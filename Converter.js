@@ -4,7 +4,47 @@
         return new Converter.init(quantity);
     }
 
-    var supportedUnits = ['milliliter', 'ml', 'teaspoon', 'tsp', 'tablespoon', 'tbs', 'tbsp', 'ounce', 'oz', 'cup', 'pint', 'pt', 'quart', 'qt', 'gallon', 'gl'];
+    var supportedUnits = ['milliliter', 'ml', 'liter', 'l', 'teaspoon', 'tsp', 'tablespoon', 'tbs', 'tbsp', 'ounce', 'oz', 'cup', 'pint', 'pt', 'quart', 'qt', 'gallon', 'gl'];
+
+    var units = {
+        milliliter: {
+            ratio: 1
+        },
+        liter: {
+            ratio: 1000
+        },
+        teaspoon: {
+            ratio: 5
+        },
+        tablespoon: {
+            ratio: 15
+        },
+        ounce: {
+            ratio: 28.41
+        },
+        cup: {
+            ratio: 250
+        },
+        pint: {
+            ratio: 568.26
+        },
+        quart: {
+            ratio: 1136.52
+        },
+        gallon: {
+            ratio: 4546.09
+        }
+    }
+
+    //units aliases
+    units.milliliter = units.ml;
+    units.liter = units.l;
+    units.teaspoon = units.tsp;
+    units.tablespoon = units.tbs = units.tbsp;
+    units.ounce = units.oz;
+    units.pint = units.pt;
+    units.quart = units.qt;
+    units.gallon = units.gl;
 
     // prototype holds methods (to save memory space)
     Converter.prototype = {
@@ -35,6 +75,7 @@
             // make chainable
             return this;
         },
+
         to: function (to) {
             if (!this.origin) {
                 throw "To must be called after from";
