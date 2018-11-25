@@ -4,22 +4,31 @@ A JavaScript library for converting cooking measures.
 
 ## Getting Started
 
+Library itself is located in Converter.js file.
+In app.js file you can play around and use the library.
+Using jQuery is optional.
+
 ## Usage
 
-##Supported Units
+```javascript
+convert(10).from('l').to('ml');
+10000
+```
+
+10 is the quantity of the first measure. 10000 is the result of the convertion.
+
+## Supported Units
 
 * milliliter = ml
 * teaspoon = tsp
-* tablespoon = tbs = tbsp
+* tablespoon = tbs
 * ounce = oz
 * cup
 * pint = pt
 * quart = qt
 * gallon = gl
 
-## Running the tests
-
-## Authors
+## Author
 
 * **Monika Niegrzybowska** - *Initial work* - [niemonie](https://github.com/niemonie)
 

@@ -1,98 +1,91 @@
-(function (global, $) {
+(function(global, $){
 
-    var Converter = function (quantity) {
-        return new Converter.init(quantity);
+    var convert = function(quantity){
+        return new convert.init(quantity);
     }
 
-    var supportedUnits = ['milliliter', 'ml', 'liter', 'l', 'teaspoon', 'tsp', 'tablespoon', 'tbs', 'tbsp', 'ounce', 'oz', 'cup', 'pint', 'pt', 'quart', 'qt', 'gallon', 'gl'];
+    var supportedUnits = ['ml', 'l', 'tsp', 'tbs', 'oz', 'cup', 'pt', 'qt'];
 
     var units = {
-        milliliter: {
+        ml: {
             ratio: 1
         },
-        liter: {
+        l: {
             ratio: 1000
         },
-        teaspoon: {
+        tsp: {
             ratio: 5
         },
-        tablespoon: {
+        tbs: {
             ratio: 15
         },
-        ounce: {
+        oz: {
             ratio: 28.41
         },
         cup: {
             ratio: 250
         },
-        pint: {
+        pt: {
             ratio: 568.26
         },
-        quart: {
+        qt: {
             ratio: 1136.52
-        },
-        gallon: {
-            ratio: 4546.09
         }
     }
 
-    //units aliases
-    units.milliliter = units.ml;
-    units.liter = units.l;
-    units.teaspoon = units.tsp;
-    units.tablespoon = units.tbs = units.tbsp;
-    units.ounce = units.oz;
-    units.pint = units.pt;
-    units.quart = units.qt;
-    units.gallon = units.gl;
-
     // prototype holds methods (to save memory space)
-    Converter.prototype = {
+    convert.prototype = {
 
-        validateQuantity: function () {
+        validateQuantity: function(){
             // 'this' refers to the calling object at execution time    
-            if (!this.quantity) {
+            if (!this.quantity){
                 throw "Missing the quantity parameter!";
             }
 
-            if (isNaN(this.quantity)) {
+            if (isNaN(this.quantity)){
                 throw "Quantity is not a number!";
             }
         },
 
-        validateUnit: function () {
-            if (supportedUnits.indexOf(this.language) === -1) {
+        validateUnit: function(unit){
+            if (!unit){
+                throw "Missing the unit!";
+            }
+            if (supportedUnits.indexOf(unit) === -1){
                 throw "Invalid unit";
             }
         },
-        from: function (from) {
-            if (this.destination) {
+        from: function(from){
+            if (this.destination){
                 throw "From must be called before to";
             }
-
             this.origin = from;
+            this.validateUnit(this.origin);
 
             // make chainable
             return this;
         },
 
-        to: function (to) {
-            if (!this.origin) {
+        to: function(to){
+
+            if(!this.origin){
                 throw "To must be called after from";
             }
 
             this.destination = to;
+            this.validateUnit(this.destination);
+
+            var result = this.quantity * units[this.origin].ratio / units[this.destination].ratio;
+            return result;
         }
-
     }
-
-    Converter.init = function (quantity) {
+    convert.init = function(quantity){
         var self = this;
         self.quantity = quantity;
         self.validateQuantity();
     }
 
-    Converter.init.prototype = Converter.prototype;
-    global.Converter = Converter;
+    convert.init.prototype = convert.prototype;
+    global.convert = convert;
 
 }(window, jQuery));
