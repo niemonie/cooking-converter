@@ -4,6 +4,30 @@
 </head>
 
 <body>
+    <div id="converter">
+        <select id="measure-from">
+            <option value="ml">milliliter</option>
+            <option value="l">liter</option>
+            <option value="tsp">teaspoon</option>
+            <option value="tbs">tablespoon</option>
+            <option value="oz">ounce</option>
+            <option value="cup">cup</option>
+            <option value="pt">pint</option>
+            <option value="qt">quart</option>
+        </select>
+        <select id="measure-to">
+            <option value="ml">milliliter</option>
+            <option value="l">liter</option>
+            <option value="tsp">teaspoon</option>
+            <option value="tbs">tablespoon</option>
+            <option value="oz">ounce</option>
+            <option value="cup">cup</option>
+            <option value="pt">pint</option>
+            <option value="qt">quart</option>
+        </select>
+        <input type="button" value="Convert" id="convert" />
+    </div>
+    <h1 id='result'></h1>
     <script src="jquery-3.3.1.min.js"></script>
     <script src="Converter.js"></script>
     <script src="app.js"></script>

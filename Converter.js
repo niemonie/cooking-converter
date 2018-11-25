@@ -1,4 +1,4 @@
-(function(global, $){
+;(function(global, $){
 
     var convert = function(quantity){
         return new convert.init(quantity);

@@ -20,13 +20,13 @@ convert(10).from('l').to('ml');
 ## Supported Units
 
 * milliliter = ml
+* liter = l
 * teaspoon = tsp
 * tablespoon = tbs
 * ounce = oz
 * cup
 * pint = pt
 * quart = qt
-* gallon = gl
 
 ## Author
 
