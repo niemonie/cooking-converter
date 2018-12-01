@@ -1,11 +1,15 @@
 <html>
 
 <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <div id="converter">
-        <select id="measure-from">
+        <label for="quantity">Quantity: </label>
+        <input required name="quantity" id="quantity" placeholder="quantity"></input>
+        <label for="measure-from">from: </label>
+        <select name="measure-from" id="measure-from">
             <option value="ml">milliliter</option>
             <option value="l">liter</option>
             <option value="tsp">teaspoon</option>
@@ -15,7 +19,8 @@
             <option value="pt">pint</option>
             <option value="qt">quart</option>
         </select>
-        <select id="measure-to">
+        <label for="measure-to">to: </label>
+        <select name="measure-to" id="measure-to">
             <option value="ml">milliliter</option>
             <option value="l">liter</option>
             <option value="tsp">teaspoon</option>
@@ -27,7 +32,7 @@
         </select>
         <input type="button" value="Convert" id="convert" />
     </div>
-    <h1 id='result'></h1>
+    <h3 id="result-box">Convertion result: <span id="result"></span></h3>
     <script src="jquery-3.3.1.min.js"></script>
     <script src="Converter.js"></script>
     <script src="app.js"></script>

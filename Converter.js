@@ -1,8 +1,11 @@
-;(function(global, $){
+;
+(function (global, $) {
 
-    var convert = function(quantity){
+    var convert = function (quantity) {
         return new convert.init(quantity);
     }
+
+    var errorMessage;
 
     var supportedUnits = ['ml', 'l', 'tsp', 'tbs', 'oz', 'cup', 'pt', 'qt'];
 
@@ -36,27 +39,30 @@
     // prototype holds methods (to save memory space)
     convert.prototype = {
 
-        validateQuantity: function(){
+        validateQuantity: function () {
             // 'this' refers to the calling object at execution time    
-            if (!this.quantity){
-                throw "Missing the quantity parameter!";
+            if (!this.quantity) {
+                this.errorMessage = "Missing the quantity parameter!";
+                throw this.errorMessage;
             }
 
-            if (isNaN(this.quantity)){
-                throw "Quantity is not a number!";
+            if (isNaN(this.quantity)) {
+                this.errorMessage = "Quantity is not a number!"
+                throw this.errorMessage;
             }
         },
 
-        validateUnit: function(unit){
-            if (!unit){
+        validateUnit: function (unit) {
+            if (!unit) {
                 throw "Missing the unit!";
             }
-            if (supportedUnits.indexOf(unit) === -1){
+            if (supportedUnits.indexOf(unit) === -1) {
                 throw "Invalid unit";
             }
         },
-        from: function(from){
-            if (this.destination){
+
+        from: function (from) {
+            if (this.destination) {
                 throw "From must be called before to";
             }
             this.origin = from;
@@ -66,9 +72,8 @@
             return this;
         },
 
-        to: function(to){
-
-            if(!this.origin){
+        to: function (to) {
+            if (!this.origin) {
                 throw "To must be called after from";
             }
 
@@ -79,7 +84,7 @@
             return result;
         }
     }
-    convert.init = function(quantity){
+    convert.init = function (quantity) {
         var self = this;
         self.quantity = quantity;
         self.validateQuantity();
@@ -87,5 +92,16 @@
 
     convert.init.prototype = convert.prototype;
     global.convert = convert;
+
+    var htmlConverter = function (selector, quantity, origin, destination) {
+        if (!$) {
+            throw 'jQuery not loaded';
+        }
+        
+        var msg = convert(quantity).from(origin).to(destination);
+        $(selector).html(msg);
+    }
+
+    global.htmlConverter = htmlConverter;
 
 }(window, jQuery));

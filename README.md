@@ -1,6 +1,6 @@
 # cooking-converter
 
-A JavaScript library for converting cooking measures.
+A JavaScript library for converting cooking units.
 
 ## Getting Started
 
@@ -30,7 +30,7 @@ convert(10).from('l').to('ml');
 
 ## Author
 
-* **Monika Niegrzybowska** - *Initial work* - [niemonie](https://github.com/niemonie)
+* **Monika Niegrzybowska** - [niemonie](https://github.com/niemonie)
 
 ## License
 
