@@ -5,8 +5,6 @@
         return new convert.init(quantity);
     }
 
-    var errorMessage;
-
     var supportedUnits = ['ml', 'l', 'tsp', 'tbs', 'oz', 'cup', 'pt', 'qt'];
 
     var units = {
@@ -84,12 +82,15 @@
             return result;
         }
     }
+    
+     // the actual object is created here
     convert.init = function (quantity) {
         var self = this;
         self.quantity = quantity;
         self.validateQuantity();
     }
 
+    // trick borrowed from jQuery so we don't have to use the 'new' keyword
     convert.init.prototype = convert.prototype;
     global.convert = convert;
 
